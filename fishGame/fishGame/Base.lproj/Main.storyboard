@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YXr-Qs-7Ft">
+                                <rect key="frame" x="0.0" y="292" width="375" height="375"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fish_bg_0" translatesAutoresizingMaskIntoConstraints="NO" id="cfp-bt-fB1">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shooting-base-lvl0~iphone" translatesAutoresizingMaskIntoConstraints="NO" id="Ui5-Ey-1qQ">
+                                        <rect key="frame" x="161" y="348" width="52" height="53"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shooting-barrel-lvl3~iphone" translatesAutoresizingMaskIntoConstraints="NO" id="NX3-yA-fPq">
+                                        <rect key="frame" x="160" y="339" width="54" height="72"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="72" id="eQO-zL-onf"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="cfp-bt-fB1" secondAttribute="bottom" id="4Po-7U-CMh"/>
+                                    <constraint firstAttribute="width" secondItem="YXr-Qs-7Ft" secondAttribute="height" multiplier="75:75" id="CS1-n9-72l"/>
+                                    <constraint firstItem="Ui5-Ey-1qQ" firstAttribute="centerX" secondItem="YXr-Qs-7Ft" secondAttribute="centerX" id="I3v-uK-bQz"/>
+                                    <constraint firstItem="cfp-bt-fB1" firstAttribute="leading" secondItem="YXr-Qs-7Ft" secondAttribute="leading" id="IRJ-w4-dCO"/>
+                                    <constraint firstItem="cfp-bt-fB1" firstAttribute="top" secondItem="YXr-Qs-7Ft" secondAttribute="top" id="OTc-EO-AQ0"/>
+                                    <constraint firstAttribute="bottom" secondItem="Ui5-Ey-1qQ" secondAttribute="bottom" constant="-26" id="Wc7-D2-X0S"/>
+                                    <constraint firstItem="NX3-yA-fPq" firstAttribute="centerX" secondItem="YXr-Qs-7Ft" secondAttribute="centerX" id="a4X-YG-iez"/>
+                                    <constraint firstAttribute="trailing" secondItem="cfp-bt-fB1" secondAttribute="trailing" id="m9I-Vf-bXv"/>
+                                    <constraint firstAttribute="bottom" secondItem="NX3-yA-fPq" secondAttribute="bottom" constant="-36" id="pGA-kr-vnx"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="kfp-P5-r8a" appends="YES" id="jm2-T6-gAm"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="YXr-Qs-7Ft" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Vtt-Pj-nhJ"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="YXr-Qs-7Ft" secondAttribute="bottom" id="aT1-8Q-Vr6"/>
+                            <constraint firstAttribute="trailing" secondItem="YXr-Qs-7Ft" secondAttribute="trailing" id="xBb-xN-EOX"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="batteryView" destination="NX3-yA-fPq" id="CLY-7D-vlQ"/>
+                        <outlet property="fishesContainView" destination="YXr-Qs-7Ft" id="Jan-us-jAB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="kfp-P5-r8a">
+                    <connections>
+                        <action selector="tapToShot:" destination="BYZ-38-t0r" id="jYp-wh-kAT"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="117.59999999999999" y="122.78860569715144"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="fish_bg_0" width="375" height="215"/>
+        <image name="shooting-barrel-lvl3~iphone" width="54" height="71"/>
+        <image name="shooting-base-lvl0~iphone" width="52" height="53"/>
+    </resources>
+</document>
