@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="dN0-KD-cMF" customClass="XBFishGameView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fish_bg_0" translatesAutoresizingMaskIntoConstraints="NO" id="zpu-8R-Wu0">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shooting-base-lvl0~iphone" translatesAutoresizingMaskIntoConstraints="NO" id="4gt-U3-D4b">
+                    <rect key="frame" x="161" y="348" width="52" height="53"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shooting-barrel-lvl3~iphone" translatesAutoresizingMaskIntoConstraints="NO" id="JMd-cf-iEH">
+                    <rect key="frame" x="160" y="339" width="54" height="72"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="72" id="f8c-62-v0e"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <gestureRecognizers/>
+            <constraints>
+                <constraint firstItem="zpu-8R-Wu0" firstAttribute="top" secondItem="dN0-KD-cMF" secondAttribute="top" id="0sy-uJ-TKd"/>
+                <constraint firstAttribute="bottom" secondItem="JMd-cf-iEH" secondAttribute="bottom" constant="-36" id="Cnr-gM-sNZ"/>
+                <constraint firstItem="JMd-cf-iEH" firstAttribute="centerX" secondItem="dN0-KD-cMF" secondAttribute="centerX" id="EdP-Jc-HCk"/>
+                <constraint firstAttribute="bottom" secondItem="4gt-U3-D4b" secondAttribute="bottom" constant="-26" id="INF-My-45C"/>
+                <constraint firstItem="zpu-8R-Wu0" firstAttribute="leading" secondItem="dN0-KD-cMF" secondAttribute="leading" id="N75-Qx-1P5"/>
+                <constraint firstAttribute="trailing" secondItem="zpu-8R-Wu0" secondAttribute="trailing" id="QXz-ws-chW"/>
+                <constraint firstItem="4gt-U3-D4b" firstAttribute="centerX" secondItem="dN0-KD-cMF" secondAttribute="centerX" id="rRo-ba-ZXC"/>
+                <constraint firstAttribute="bottom" secondItem="zpu-8R-Wu0" secondAttribute="bottom" id="rsh-EF-Ktv"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="batteryView" destination="JMd-cf-iEH" id="ecS-CH-6lY"/>
+                <outletCollection property="gestureRecognizers" destination="Ib0-Iz-OmL" appends="YES" id="zvD-pX-VgS"/>
+            </connections>
+        </view>
+        <tapGestureRecognizer id="Ib0-Iz-OmL">
+            <connections>
+                <action selector="tapToShot:" destination="dN0-KD-cMF" id="8AC-o8-02d"/>
+            </connections>
+        </tapGestureRecognizer>
+    </objects>
+    <resources>
+        <image name="fish_bg_0" width="375" height="215"/>
+        <image name="shooting-barrel-lvl3~iphone" width="54" height="71"/>
+        <image name="shooting-base-lvl0~iphone" width="52" height="53"/>
+    </resources>
+</document>

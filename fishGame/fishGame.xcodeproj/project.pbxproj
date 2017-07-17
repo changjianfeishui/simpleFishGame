@@ -7,21 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		373274DD1F13539900113D13 /* FishView.m in Sources */ = {isa = PBXBuildFile; fileRef = 373274DC1F13539900113D13 /* FishView.m */; };
-		373274E01F14BCB900113D13 /* BulletView.m in Sources */ = {isa = PBXBuildFile; fileRef = 373274DF1F14BCB900113D13 /* BulletView.m */; };
 		378109431EF8D189005B82BB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 378109421EF8D189005B82BB /* main.m */; };
 		378109461EF8D189005B82BB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 378109451EF8D189005B82BB /* AppDelegate.m */; };
 		378109491EF8D189005B82BB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 378109481EF8D189005B82BB /* ViewController.m */; };
 		3781094C1EF8D189005B82BB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3781094A1EF8D189005B82BB /* Main.storyboard */; };
 		3781094E1EF8D189005B82BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3781094D1EF8D189005B82BB /* Assets.xcassets */; };
 		378109511EF8D189005B82BB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3781094F1EF8D189005B82BB /* LaunchScreen.storyboard */; };
+		37A01E401F18E3D700117DD1 /* fishGameUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A01E3F1F18E3D700117DD1 /* fishGameUITests.m */; };
+		37C201DA1F1CCC8E00DAFC0D /* BulletView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C201D41F1CCC8E00DAFC0D /* BulletView.m */; };
+		37C201DB1F1CCC8E00DAFC0D /* FishView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C201D61F1CCC8E00DAFC0D /* FishView.m */; };
+		37C201DC1F1CCC8E00DAFC0D /* XBFishGameView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C201D81F1CCC8E00DAFC0D /* XBFishGameView.m */; };
+		37C201DD1F1CCC8E00DAFC0D /* XBFishGameView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37C201D91F1CCC8E00DAFC0D /* XBFishGameView.xib */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		37A01E421F18E3D700117DD1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 378109361EF8D189005B82BB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3781093D1EF8D189005B82BB;
+			remoteInfo = fishGame;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
-		373274DB1F13539900113D13 /* FishView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishView.h; sourceTree = "<group>"; };
-		373274DC1F13539900113D13 /* FishView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FishView.m; sourceTree = "<group>"; };
-		373274DE1F14BCB900113D13 /* BulletView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BulletView.h; sourceTree = "<group>"; };
-		373274DF1F14BCB900113D13 /* BulletView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BulletView.m; sourceTree = "<group>"; };
 		3781093E1EF8D189005B82BB /* fishGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fishGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		378109421EF8D189005B82BB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		378109441EF8D189005B82BB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -32,10 +41,27 @@
 		3781094D1EF8D189005B82BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		378109501EF8D189005B82BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		378109521EF8D189005B82BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		37A01E3D1F18E3D700117DD1 /* fishGameUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = fishGameUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		37A01E3F1F18E3D700117DD1 /* fishGameUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = fishGameUITests.m; sourceTree = "<group>"; };
+		37A01E411F18E3D700117DD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		37C201D31F1CCC8E00DAFC0D /* BulletView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BulletView.h; sourceTree = "<group>"; };
+		37C201D41F1CCC8E00DAFC0D /* BulletView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BulletView.m; sourceTree = "<group>"; };
+		37C201D51F1CCC8E00DAFC0D /* FishView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishView.h; sourceTree = "<group>"; };
+		37C201D61F1CCC8E00DAFC0D /* FishView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FishView.m; sourceTree = "<group>"; };
+		37C201D71F1CCC8E00DAFC0D /* XBFishGameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XBFishGameView.h; sourceTree = "<group>"; };
+		37C201D81F1CCC8E00DAFC0D /* XBFishGameView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XBFishGameView.m; sourceTree = "<group>"; };
+		37C201D91F1CCC8E00DAFC0D /* XBFishGameView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XBFishGameView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		3781093B1EF8D189005B82BB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		37A01E3A1F18E3D700117DD1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -49,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				378109401EF8D189005B82BB /* fishGame */,
+				37A01E3E1F18E3D700117DD1 /* fishGameUITests */,
 				3781093F1EF8D189005B82BB /* Products */,
 			);
 			sourceTree = "<group>";
@@ -57,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				3781093E1EF8D189005B82BB /* fishGame.app */,
+				37A01E3D1F18E3D700117DD1 /* fishGameUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -64,6 +92,7 @@
 		378109401EF8D189005B82BB /* fishGame */ = {
 			isa = PBXGroup;
 			children = (
+				37C201D21F1CCC8E00DAFC0D /* GameClass */,
 				378109441EF8D189005B82BB /* AppDelegate.h */,
 				378109451EF8D189005B82BB /* AppDelegate.m */,
 				378109471EF8D189005B82BB /* ViewController.h */,
@@ -73,10 +102,6 @@
 				3781094F1EF8D189005B82BB /* LaunchScreen.storyboard */,
 				378109521EF8D189005B82BB /* Info.plist */,
 				378109411EF8D189005B82BB /* Supporting Files */,
-				373274DB1F13539900113D13 /* FishView.h */,
-				373274DC1F13539900113D13 /* FishView.m */,
-				373274DE1F14BCB900113D13 /* BulletView.h */,
-				373274DF1F14BCB900113D13 /* BulletView.m */,
 			);
 			path = fishGame;
 			sourceTree = "<group>";
@@ -87,6 +112,29 @@
 				378109421EF8D189005B82BB /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		37A01E3E1F18E3D700117DD1 /* fishGameUITests */ = {
+			isa = PBXGroup;
+			children = (
+				37A01E3F1F18E3D700117DD1 /* fishGameUITests.m */,
+				37A01E411F18E3D700117DD1 /* Info.plist */,
+			);
+			path = fishGameUITests;
+			sourceTree = "<group>";
+		};
+		37C201D21F1CCC8E00DAFC0D /* GameClass */ = {
+			isa = PBXGroup;
+			children = (
+				37C201D31F1CCC8E00DAFC0D /* BulletView.h */,
+				37C201D41F1CCC8E00DAFC0D /* BulletView.m */,
+				37C201D51F1CCC8E00DAFC0D /* FishView.h */,
+				37C201D61F1CCC8E00DAFC0D /* FishView.m */,
+				37C201D71F1CCC8E00DAFC0D /* XBFishGameView.h */,
+				37C201D81F1CCC8E00DAFC0D /* XBFishGameView.m */,
+				37C201D91F1CCC8E00DAFC0D /* XBFishGameView.xib */,
+			);
+			path = GameClass;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -109,6 +157,24 @@
 			productReference = 3781093E1EF8D189005B82BB /* fishGame.app */;
 			productType = "com.apple.product-type.application";
 		};
+		37A01E3C1F18E3D700117DD1 /* fishGameUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 37A01E461F18E3D700117DD1 /* Build configuration list for PBXNativeTarget "fishGameUITests" */;
+			buildPhases = (
+				37A01E391F18E3D700117DD1 /* Sources */,
+				37A01E3A1F18E3D700117DD1 /* Frameworks */,
+				37A01E3B1F18E3D700117DD1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				37A01E431F18E3D700117DD1 /* PBXTargetDependency */,
+			);
+			name = fishGameUITests;
+			productName = fishGameUITests;
+			productReference = 37A01E3D1F18E3D700117DD1 /* fishGameUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -122,6 +188,11 @@
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = UVU2WXA3XV;
 						ProvisioningStyle = Automatic;
+					};
+					37A01E3C1F18E3D700117DD1 = {
+						CreatedOnToolsVersion = 8.3.3;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 3781093D1EF8D189005B82BB;
 					};
 				};
 			};
@@ -139,6 +210,7 @@
 			projectRoot = "";
 			targets = (
 				3781093D1EF8D189005B82BB /* fishGame */,
+				37A01E3C1F18E3D700117DD1 /* fishGameUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -148,9 +220,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37C201DD1F1CCC8E00DAFC0D /* XBFishGameView.xib in Resources */,
 				378109511EF8D189005B82BB /* LaunchScreen.storyboard in Resources */,
 				3781094E1EF8D189005B82BB /* Assets.xcassets in Resources */,
 				3781094C1EF8D189005B82BB /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		37A01E3B1F18E3D700117DD1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -161,15 +241,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37C201DC1F1CCC8E00DAFC0D /* XBFishGameView.m in Sources */,
+				37C201DB1F1CCC8E00DAFC0D /* FishView.m in Sources */,
 				378109491EF8D189005B82BB /* ViewController.m in Sources */,
 				378109461EF8D189005B82BB /* AppDelegate.m in Sources */,
-				373274DD1F13539900113D13 /* FishView.m in Sources */,
-				373274E01F14BCB900113D13 /* BulletView.m in Sources */,
+				37C201DA1F1CCC8E00DAFC0D /* BulletView.m in Sources */,
 				378109431EF8D189005B82BB /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		37A01E391F18E3D700117DD1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				37A01E401F18E3D700117DD1 /* fishGameUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		37A01E431F18E3D700117DD1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3781093D1EF8D189005B82BB /* fishGame */;
+			targetProxy = 37A01E421F18E3D700117DD1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		3781094A1EF8D189005B82BB /* Main.storyboard */ = {
@@ -307,6 +404,28 @@
 			};
 			name = Release;
 		};
+		37A01E441F18E3D700117DD1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = fishGameUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.xiu8.fishGameUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = fishGame;
+			};
+			name = Debug;
+		};
+		37A01E451F18E3D700117DD1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = fishGameUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.xiu8.fishGameUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = fishGame;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -324,6 +443,15 @@
 			buildConfigurations = (
 				378109561EF8D189005B82BB /* Debug */,
 				378109571EF8D189005B82BB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		37A01E461F18E3D700117DD1 /* Build configuration list for PBXNativeTarget "fishGameUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				37A01E441F18E3D700117DD1 /* Debug */,
+				37A01E451F18E3D700117DD1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -7,13 +7,11 @@
 //
 
 #import "FishView.h"
-//鱼的种类数
-static int fishKind = 6;
+
 //每种鱼的动画图片数
 static NSInteger fishAnimationCount = 10;
 
-//鱼位移动画持续时间
-static NSTimeInterval kFishSwimmingAnimationDuration = 10;
+
 
 @interface FishView()
 @property (nonatomic,assign) NSInteger  kind; /**<      鱼的种类*/
@@ -38,23 +36,21 @@ static NSTimeInterval kFishSwimmingAnimationDuration = 10;
 }
 
 #pragma mark Public
-+ (FishView *)fishView
++ (FishView *)fishViewWithFishType:(XBFishType)fishType
 {
-    //随机一种鱼
-    NSInteger fishClass = arc4random_uniform(fishKind);
     //获取动画图片
     NSMutableArray *fishAni = [NSMutableArray arrayWithCapacity:10];
     for (int i = 0; i < fishAnimationCount; i++) {
-        NSString *picName = [NSString stringWithFormat:@"fish_%d_animation_%d",(int)fishClass,i];
+        NSString *picName = [NSString stringWithFormat:@"fish_%d_animation_%d",(int)fishType,i];
         UIImage *pic = [UIImage imageNamed:picName];
         [fishAni addObject:pic];
     }
     
     //获取鱼类图片尺寸
-    CGSize fishSize = [self p_fishSize:fishClass];
+    CGSize fishSize = [self p_fishSize:fishType];
     //设置动画
     FishView *fishPicV = [[FishView alloc]initWithFrame:CGRectMake(0, 0, fishSize.width, fishSize.height)];
-    fishPicV.kind = fishClass;
+    fishPicV.kind = fishType;
     [fishPicV setAnimationImages:fishAni];
     [fishPicV setAnimationRepeatCount:0];
     [fishPicV setAnimationDuration:3];
@@ -64,24 +60,32 @@ static NSTimeInterval kFishSwimmingAnimationDuration = 10;
 
 - (void)beginSwimming
 {
-    CGPoint point = [self p_randomPosition];
-    self.frame = CGRectMake(point.x, point.y, self.frame.size.width, self.frame.size.height);
+    NSAssert(self.superview, @"必须先把鱼放入池中");
+    CGFloat x = 0;
+    
+    if (self.direction == XBFishSwimmingDirectionLeft) {
+        x = -self.bounds.size.width;
+    }else{
+        x = self.superview.bounds.size.width;
+    }
+    
+    self.frame = CGRectMake(x, self.appearY, self.frame.size.width, self.frame.size.height);
     [self startAnimating];
     CGRect frame = self.frame;
     __weak typeof(self) weakSelf = self;
-    if (frame.origin.x < 0) {
-        frame.origin.x = self.superview.frame.size.width;
+    if (self.direction == XBFishSwimmingDirectionLeft) {
+        frame.origin.x = self.superview.bounds.size.width;
         self.transform = CGAffineTransformMakeScale(-1.0, 1.0);
         
-        [UIView animateWithDuration:kFishSwimmingAnimationDuration animations:^{
+        [UIView animateWithDuration:self.duration animations:^{
             self.frame = frame;
         } completion:^(BOOL finished) {
             [weakSelf removeFromSuperview];
 
         }];
     }else{
-        frame.origin.x = -self.frame.size.width;
-        [UIView animateWithDuration:kFishSwimmingAnimationDuration animations:^{
+        frame.origin.x = -self.bounds.size.width;
+        [UIView animateWithDuration:self.duration animations:^{
             self.frame = frame;
         } completion:^(BOOL finished) {
  
@@ -139,39 +143,18 @@ static NSTimeInterval kFishSwimmingAnimationDuration = 10;
             [imgv removeFromSuperview];
         }];
 
-        
-
         [self removeFromSuperview];
 
-        
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        });
     }
 }
 
-//随机初始化坐标, 及左右出场
-- (CGPoint)p_randomPosition
-{
-    NSAssert(self.superview, @"FishView还没有被添加到父视图上");
-    CGFloat canvasWidth = self.superview.frame.size.width;
-    CGFloat canvasHeight = self.superview.frame.size.height;
-    CGFloat x,y;
-    NSInteger direction = arc4random_uniform(2);
-    if (direction == 0) {
-        x = -self.bounds.size.width;
-    }else{
-        x = canvasWidth;
-    }
-    
-    y = arc4random_uniform(canvasHeight - self.bounds.size.height - 100);
-    return CGPointMake(x, y);
-}
 
-+ (CGSize)p_fishSize:(NSInteger)fishClass
+
++ (CGSize)p_fishSize:(NSInteger)fishType
 {
     CGFloat height;
     CGFloat width;
-    switch (fishClass) {
+    switch (fishType) {
         case 0:
             width = 31;
             height = 40;
