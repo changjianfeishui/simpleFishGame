@@ -17,6 +17,8 @@ static int fishTypeCount = 6;
 @property (nonatomic,strong) UIDynamicAnimator  *animator; /**< */
 @property (weak, nonatomic) IBOutlet UIImageView *batteryView;
 @property (nonatomic,strong) CADisplayLink  *link; /**< */
+@property (nonatomic,assign) int  power; /**<      */
+
 
 @end
 @implementation XBFishGameView
@@ -25,6 +27,7 @@ static int fishTypeCount = 6;
 - (void)awakeFromNib
 {
     [super awakeFromNib];
+    self.power = 0;
     self.batteryView.layer.anchorPoint = CGPointMake(0.5, 1);
 }
 
@@ -35,7 +38,7 @@ static int fishTypeCount = 6;
         return;
     }
     self.link = [CADisplayLink displayLinkWithTarget:self selector:@selector(p_createFish)];
-    self.link.frameInterval = 20;
+    self.link.frameInterval = 60;
     [self.link addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
 
 }
@@ -58,6 +61,7 @@ static int fishTypeCount = 6;
     
     //bullet
     BulletView *bullet = [self p_getBullet];
+    bullet.power = (self.power)%4 + 1;
     [self addSubview:bullet];
     [self bringSubviewToFront:self.batteryView];
     
@@ -89,6 +93,26 @@ static int fishTypeCount = 6;
     [self.animator addBehavior:pushBehavior];
 }
 
+- (IBAction)voidTap:(UITapGestureRecognizer *)sender {
+}
+
+
+- (IBAction)powerPlus:(UIButton *)sender {
+    NSString *imgName = [NSString stringWithFormat:@"shooting-barrel-lvl%d~iphone",(++self.power)%4];
+    self.batteryView.image = [UIImage imageNamed:imgName];
+}
+
+- (IBAction)powerMinus:(UIButton *)sender {
+    self.power--;
+    if (self.power < 0) {
+        self.power = 3;
+    }
+    NSString *imgName = [NSString stringWithFormat:@"shooting-barrel-lvl%d~iphone",(self.power)%4];
+    self.batteryView.image = [UIImage imageNamed:imgName];
+}
+
+
+
 #pragma mark UICollisionBehaviorDelegate
 - (void)collisionBehavior:(UICollisionBehavior*)behavior beganContactForItem:(UIView *)item withBoundaryIdentifier:(nullable id <NSCopying>)identifier atPoint:(CGPoint)p
 {
@@ -108,7 +132,7 @@ static int fishTypeCount = 6;
     NSInteger fishType = arc4random_uniform(fishTypeCount);
     
     FishView *fish = [FishView fishViewWithFishType:fishType];
-    
+    fish.blood = (fishType + 1) * 2; //鱼越大, 生命值越高
     //direction
     NSInteger direction = arc4random_uniform(2);
     fish.direction = (direction == 0)?XBFishSwimmingDirectionLeft:XBFishSwimmingDirectionRight;
@@ -116,16 +140,20 @@ static int fishTypeCount = 6;
     fish.appearY = y;
     
     //duration
-    fish.duration = 10 - fishType;
+    fish.duration = fishType + 10;
     
     __weak typeof(self) weakSelf = self;
     [self insertSubview:fish atIndex:1];
     [fish beginSwimming];
     
     fish.fishHitSuccess = ^(BulletView *bullet){
-        [weakSelf.animator removeBehavior:bullet.collision];
-        [bullet removeFromSuperview];
         [weakSelf p_showGollisionAnimationImgvAtPoint:bullet.center];
+        [bullet removeFromSuperview];
+        [weakSelf.animator removeBehavior:bullet.collision];
+
+    };
+    fish.fishDead = ^(BulletView *bullet) {
+        
     };
     
 }

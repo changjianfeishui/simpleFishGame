@@ -18,10 +18,42 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fish_bg_0" translatesAutoresizingMaskIntoConstraints="NO" id="zpu-8R-Wu0">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
                 </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qkg-g7-q63">
+                    <rect key="frame" x="112" y="350" width="150" height="25"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7nQ-QZ-Mzb" userLabel="+">
+                            <rect key="frame" x="125" y="0.0" width="25" height="24"/>
+                            <state key="normal" image="shooting-plus~iphone"/>
+                            <connections>
+                                <action selector="powerPlus:" destination="dN0-KD-cMF" eventType="touchUpInside" id="b6r-lm-D7g"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y92-cj-pcf" userLabel="-">
+                            <rect key="frame" x="0.0" y="0.0" width="25" height="24"/>
+                            <state key="normal" image="shooting-minus~iphone"/>
+                            <connections>
+                                <action selector="powerMinus:" destination="dN0-KD-cMF" eventType="touchUpInside" id="vAY-fI-5YB"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <gestureRecognizers/>
+                    <constraints>
+                        <constraint firstItem="7nQ-QZ-Mzb" firstAttribute="centerY" secondItem="Qkg-g7-q63" secondAttribute="centerY" id="2rP-0a-QA2"/>
+                        <constraint firstAttribute="trailing" secondItem="7nQ-QZ-Mzb" secondAttribute="trailing" id="KWw-pv-q5D"/>
+                        <constraint firstAttribute="width" constant="150" id="R10-ND-HNh"/>
+                        <constraint firstAttribute="height" constant="25" id="ZfF-dr-0ON"/>
+                        <constraint firstItem="y92-cj-pcf" firstAttribute="leading" secondItem="Qkg-g7-q63" secondAttribute="leading" id="tLB-CR-HUD"/>
+                        <constraint firstItem="y92-cj-pcf" firstAttribute="centerY" secondItem="Qkg-g7-q63" secondAttribute="centerY" id="uII-1q-UMJ"/>
+                    </constraints>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="FNg-3f-2M2" appends="YES" id="QVA-Cr-9Gq"/>
+                    </connections>
+                </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shooting-base-lvl0~iphone" translatesAutoresizingMaskIntoConstraints="NO" id="4gt-U3-D4b">
                     <rect key="frame" x="161" y="348" width="52" height="53"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shooting-barrel-lvl3~iphone" translatesAutoresizingMaskIntoConstraints="NO" id="JMd-cf-iEH">
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shooting-barrel-lvl0~iphone" translatesAutoresizingMaskIntoConstraints="NO" id="JMd-cf-iEH">
                     <rect key="frame" x="160" y="339" width="54" height="72"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="72" id="f8c-62-v0e"/>
@@ -33,28 +65,38 @@
             <constraints>
                 <constraint firstItem="zpu-8R-Wu0" firstAttribute="top" secondItem="dN0-KD-cMF" secondAttribute="top" id="0sy-uJ-TKd"/>
                 <constraint firstAttribute="bottom" secondItem="JMd-cf-iEH" secondAttribute="bottom" constant="-36" id="Cnr-gM-sNZ"/>
+                <constraint firstItem="Qkg-g7-q63" firstAttribute="centerX" secondItem="dN0-KD-cMF" secondAttribute="centerX" id="DUl-GQ-LQQ"/>
                 <constraint firstItem="JMd-cf-iEH" firstAttribute="centerX" secondItem="dN0-KD-cMF" secondAttribute="centerX" id="EdP-Jc-HCk"/>
                 <constraint firstAttribute="bottom" secondItem="4gt-U3-D4b" secondAttribute="bottom" constant="-26" id="INF-My-45C"/>
                 <constraint firstItem="zpu-8R-Wu0" firstAttribute="leading" secondItem="dN0-KD-cMF" secondAttribute="leading" id="N75-Qx-1P5"/>
                 <constraint firstAttribute="trailing" secondItem="zpu-8R-Wu0" secondAttribute="trailing" id="QXz-ws-chW"/>
                 <constraint firstItem="4gt-U3-D4b" firstAttribute="centerX" secondItem="dN0-KD-cMF" secondAttribute="centerX" id="rRo-ba-ZXC"/>
                 <constraint firstAttribute="bottom" secondItem="zpu-8R-Wu0" secondAttribute="bottom" id="rsh-EF-Ktv"/>
+                <constraint firstAttribute="bottom" secondItem="Qkg-g7-q63" secondAttribute="bottom" id="wBh-L8-MCn"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="batteryView" destination="JMd-cf-iEH" id="ecS-CH-6lY"/>
                 <outletCollection property="gestureRecognizers" destination="Ib0-Iz-OmL" appends="YES" id="zvD-pX-VgS"/>
             </connections>
+            <point key="canvasLocation" x="25.5" y="51.5"/>
         </view>
-        <tapGestureRecognizer id="Ib0-Iz-OmL">
+        <tapGestureRecognizer id="Ib0-Iz-OmL" userLabel="shot">
             <connections>
                 <action selector="tapToShot:" destination="dN0-KD-cMF" id="8AC-o8-02d"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="FNg-3f-2M2">
+            <connections>
+                <action selector="voidTap:" destination="dN0-KD-cMF" id="P2U-6x-N6k"/>
             </connections>
         </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="fish_bg_0" width="375" height="215"/>
-        <image name="shooting-barrel-lvl3~iphone" width="54" height="71"/>
+        <image name="shooting-barrel-lvl0~iphone" width="54" height="71"/>
         <image name="shooting-base-lvl0~iphone" width="52" height="53"/>
+        <image name="shooting-minus~iphone" width="25" height="24"/>
+        <image name="shooting-plus~iphone" width="25" height="24"/>
     </resources>
 </document>

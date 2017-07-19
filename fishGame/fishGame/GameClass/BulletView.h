@@ -10,5 +10,7 @@
 
 @interface BulletView : UIImageView
 @property (nonatomic,weak) UICollisionBehavior  *collision; /**< <#note#>*/
+@property (nonatomic,assign) NSInteger power; /**<      子弹攻击力*/
+
 
 @end

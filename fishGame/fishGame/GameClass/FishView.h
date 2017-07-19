@@ -30,7 +30,15 @@ typedef NS_ENUM(NSInteger, XBFishType) {
 
 
 /**
- 从左到右或从右到左一次完整动画的持续时间
+  鱼的血量
+ */
+@property (nonatomic,assign) NSInteger blood;
+
+
+
+
+/**
+ 从左到右或从右到左一次完整动画的持续时间,决定鱼的速度
  */
 @property (nonatomic,assign) NSTimeInterval  duration;
 
@@ -50,6 +58,9 @@ typedef NS_ENUM(NSInteger, XBFishType) {
 
 //命中后的回调
 @property (nonatomic,copy)  void (^fishHitSuccess)(BulletView *bullet); /**<      */
+
+//鱼被消灭的回调
+@property (nonatomic,copy)  void (^fishDead)(BulletView *bullet); /**<      */
 
 
 @end

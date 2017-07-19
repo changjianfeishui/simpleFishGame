@@ -7,6 +7,7 @@
 //
 
 #import "FishView.h"
+#import "BulletView.h"
 
 //每种鱼的动画图片数
 static NSInteger fishAnimationCount = 10;
@@ -105,7 +106,7 @@ static NSInteger fishAnimationCount = 10;
 
 - (void)p_logFrame:(NSNotification *)noti
 {
-    UIImageView *imgv = noti.object;
+    BulletView *imgv = noti.object;
     CGPoint point = imgv.center;
     
     CGRect presentFrame = self.layer.presentationLayer.frame;
@@ -114,9 +115,16 @@ static NSInteger fishAnimationCount = 10;
     CGRect hitFrame = UIEdgeInsetsInsetRect(presentFrame, UIEdgeInsetsMake(0, 0, presentFrame.size.height * 0.5, 0));
     
     if (CGRectContainsPoint(hitFrame, point)) {
-//        NSLog(@"成功命中");
         if (self.fishHitSuccess) {
             self.fishHitSuccess((BulletView *)imgv);
+        }
+        self.blood -= imgv.power;
+        if (self.blood > 0) {
+
+            return;
+        }
+        if (self.fishDead) {
+            self.fishDead((BulletView *)imgv);
         }
         
         [self.layer removeAllAnimations];
