@@ -33,7 +33,7 @@ static NSInteger fishAnimationCount = 10;
     self = [super initWithFrame:frame];
     if (self) {
         [self p_regiNoti];
-        self.backgroundColor = [UIColor redColor];
+//        self.backgroundColor = [UIColor redColor];
     }
     return self;
 }
