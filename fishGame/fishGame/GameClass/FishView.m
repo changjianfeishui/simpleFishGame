@@ -33,6 +33,7 @@ static NSInteger fishAnimationCount = 10;
     self = [super initWithFrame:frame];
     if (self) {
         [self p_regiNoti];
+        self.backgroundColor = [UIColor redColor];
     }
     return self;
 }
@@ -131,9 +132,9 @@ static NSInteger fishAnimationCount = 10;
     CGRect presentFrame = self.layer.presentationLayer.frame;
     
     //有效命中范围内才能打死鱼
-    CGRect hitFrame = UIEdgeInsetsInsetRect(presentFrame, UIEdgeInsetsMake(0, 0, presentFrame.size.height * 0.5, 0));
+//    CGRect hitFrame = UIEdgeInsetsInsetRect(presentFrame, UIEdgeInsetsMake(0, 0, presentFrame.size.height * 0.5, 0));
     
-    if (CGRectContainsPoint(hitFrame, point)) {
+    if (CGRectContainsPoint(presentFrame, point)) {
         if (self.fishHitSuccess) {
             self.fishHitSuccess((BulletView *)imgv);
         }
@@ -142,9 +143,9 @@ static NSInteger fishAnimationCount = 10;
 
             return;
         }
-//        if (self.fishDead) {
-//            self.fishDead((BulletView *)imgv);
-//        }
+        if (self.fishDead) {
+            self.fishDead((BulletView *)imgv);
+        }
         
         [self.layer removeAllAnimations];
 

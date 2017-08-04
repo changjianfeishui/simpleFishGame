@@ -268,6 +268,11 @@ static int fishTypeCount = 6;
         [weakSelf.animator removeBehavior:bullet.collision];
 
     };
+    
+    fish.fishDead = ^(BulletView *bullet){
+        NSLog(@"成功击杀");
+    };
+    
 }
 
 
@@ -325,7 +330,7 @@ static int fishTypeCount = 6;
 
 - (void)p_beginAutoShooting
 {
-    NSLog(@"自动射击中");
+//    NSLog(@"自动射击中");
     CGPoint point = self.lockedFish.layer.presentationLayer.frame.origin;
     if (self.lockedFish.direction == XBFishSwimmingDirectionLeft) {
         point = CGPointMake(point.x + self.lockedFish.frame.size.width, point.y);

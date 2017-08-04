@@ -69,7 +69,7 @@ typedef NS_ENUM(NSInteger, XBFishType) {
 @property (nonatomic,copy)  void (^fishHitSuccess)(BulletView *bullet); /**<      */
 
 //鱼被消灭的回调
-//@property (nonatomic,copy)  void (^fishDead)(BulletView *bullet); /**<      */
+@property (nonatomic,copy)  void (^fishDead)(BulletView *bullet); /**<      */
 
 @property (nonatomic,copy)  void  (^fishDismiss)(BOOL isLocked); /**<      🐟游出屏幕或死亡*/
 
