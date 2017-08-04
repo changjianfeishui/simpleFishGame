@@ -136,7 +136,7 @@ static NSInteger fishAnimationCount = 10;
     
     if (CGRectContainsPoint(presentFrame, point)) {
         if (self.fishHitSuccess) {
-            self.fishHitSuccess((BulletView *)imgv);
+            self.fishHitSuccess((BulletView *)imgv,self);
         }
         self.blood -= imgv.power;
         if (self.blood > 0) {

@@ -66,7 +66,7 @@ typedef NS_ENUM(NSInteger, XBFishType) {
 - (void)beginSwimming;
 
 //命中后的回调
-@property (nonatomic,copy)  void (^fishHitSuccess)(BulletView *bullet); /**<      */
+@property (nonatomic,copy)  void (^fishHitSuccess)(BulletView *bullet, FishView *fish); /**<      */
 
 //鱼被消灭的回调
 @property (nonatomic,copy)  void (^fishDead)(BulletView *bullet); /**<      */

@@ -262,8 +262,10 @@ static int fishTypeCount = 6;
         }
     };
 
-    fish.fishHitSuccess = ^(BulletView *bullet){
-        [weakSelf p_showGollisionAnimationImgvAtPoint:bullet.center];
+    fish.fishHitSuccess = ^(BulletView *bullet, FishView *fish){
+        CGPoint point = CGPointMake(bullet.center.x, bullet.center.y - fish.frame.size.height * 0.5);
+        
+        [weakSelf p_showGollisionAnimationImgvAtPoint:point];
         [bullet removeFromSuperview];
         [weakSelf.animator removeBehavior:bullet.collision];
 
