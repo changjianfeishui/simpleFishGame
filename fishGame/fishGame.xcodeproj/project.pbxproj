@@ -186,7 +186,7 @@
 				TargetAttributes = {
 					3781093D1EF8D189005B82BB = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = UVU2WXA3XV;
+						DevelopmentTeam = BBM62338AS;
 						ProvisioningStyle = Automatic;
 					};
 					37A01E3C1F18E3D700117DD1 = {
@@ -382,7 +382,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = UVU2WXA3XV;
+				DEVELOPMENT_TEAM = BBM62338AS;
 				INFOPLIST_FILE = fishGame/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -395,7 +395,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = UVU2WXA3XV;
+				DEVELOPMENT_TEAM = BBM62338AS;
 				INFOPLIST_FILE = fishGame/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

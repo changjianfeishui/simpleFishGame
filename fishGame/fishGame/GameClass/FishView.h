@@ -30,11 +30,20 @@ typedef NS_ENUM(NSInteger, XBFishType) {
 
 
 /**
+ 展示锁定图标
+ */
+- (void)showLock;
+
+
+- (void)hideLock;
+
+/**
   鱼的血量
  */
 @property (nonatomic,assign) NSInteger blood;
 
 
+@property (nonatomic,assign) BOOL  targetable; /**<  是否可被命中*/
 
 
 /**
@@ -60,7 +69,10 @@ typedef NS_ENUM(NSInteger, XBFishType) {
 @property (nonatomic,copy)  void (^fishHitSuccess)(BulletView *bullet); /**<      */
 
 //鱼被消灭的回调
-@property (nonatomic,copy)  void (^fishDead)(BulletView *bullet); /**<      */
+//@property (nonatomic,copy)  void (^fishDead)(BulletView *bullet); /**<      */
+
+@property (nonatomic,copy)  void  (^fishDismiss)(BOOL isLocked); /**<      🐟游出屏幕或死亡*/
+
 
 
 @end

@@ -17,6 +17,7 @@ static NSInteger fishAnimationCount = 10;
 @interface FishView()
 @property (nonatomic,assign) NSInteger  kind; /**<      鱼的种类*/
 
+@property (nonatomic,strong) UIImageView  *lock; /**< 🔐*/
 
 @end
 
@@ -75,29 +76,43 @@ static NSInteger fishAnimationCount = 10;
     CGRect frame = self.frame;
     __weak typeof(self) weakSelf = self;
     if (self.direction == XBFishSwimmingDirectionLeft) {
-        frame.origin.x = self.superview.bounds.size.width;
+        frame.origin.x = self.superview.bounds.size.width - self.frame.size.width * 0.1;
         self.transform = CGAffineTransformMakeScale(-1.0, 1.0);
         
         [UIView animateWithDuration:self.duration animations:^{
             self.frame = frame;
         } completion:^(BOOL finished) {
+            if (weakSelf.fishDismiss) {
+                weakSelf.fishDismiss(!(weakSelf.lock == nil));
+            }
             [weakSelf removeFromSuperview];
 
         }];
     }else{
-        frame.origin.x = -self.bounds.size.width;
+        frame.origin.x = -self.bounds.size.width + self.frame.size.width * 0.1;
         [UIView animateWithDuration:self.duration animations:^{
             self.frame = frame;
         } completion:^(BOOL finished) {
- 
+            if (weakSelf.fishDismiss) {
+                weakSelf.fishDismiss(!(weakSelf.lock == nil));
+            }
             [weakSelf removeFromSuperview];
         }];
     }
 
 }
+- (void)showLock
+{
+     self.lock = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"phhd_miaozhun1"]];
+    [self addSubview:self.lock];
+    self.lock.center = CGPointMake(self.bounds.size.width * 0.5, self.bounds.size.height * 0.5);
+}
 
-
-
+- (void)hideLock
+{
+    [self.lock removeFromSuperview];
+    self.lock = nil;
+}
 #pragma mark Private
 - (void)p_regiNoti
 {
@@ -106,6 +121,10 @@ static NSInteger fishAnimationCount = 10;
 
 - (void)p_logFrame:(NSNotification *)noti
 {
+    if (!self.targetable) {
+        return;
+    }
+    
     BulletView *imgv = noti.object;
     CGPoint point = imgv.center;
     
@@ -123,9 +142,9 @@ static NSInteger fishAnimationCount = 10;
 
             return;
         }
-        if (self.fishDead) {
-            self.fishDead((BulletView *)imgv);
-        }
+//        if (self.fishDead) {
+//            self.fishDead((BulletView *)imgv);
+//        }
         
         [self.layer removeAllAnimations];
 
@@ -195,6 +214,7 @@ static NSInteger fishAnimationCount = 10;
     return CGSizeMake(width, height);
 }
 
+#pragma mark Accesstor
 
 
 @end

@@ -19,6 +19,18 @@ static int fishTypeCount = 6;
 @property (nonatomic,strong) CADisplayLink  *link; /**< */
 @property (nonatomic,assign) int  power; /**<      */
 
+@property (nonatomic,assign) NSTimeInterval  lastTime; /**<      <#note#>*/
+
+@property (weak, nonatomic) IBOutlet UIButton *lockBtn;
+
+@property (nonatomic,assign) BOOL lockMode; /**<    是否为锁定模式*/
+
+@property (nonatomic,strong) CADisplayLink  *autoShootTimer; /**< */
+
+
+@property (nonatomic,strong) FishView  *lockedFish; /**< */
+
+
 
 @end
 @implementation XBFishGameView
@@ -28,6 +40,7 @@ static int fishTypeCount = 6;
 {
     [super awakeFromNib];
     self.power = 0;
+    self.lastTime = 0;
     self.batteryView.layer.anchorPoint = CGPointMake(0.5, 1);
 }
 
@@ -50,10 +63,134 @@ static int fishTypeCount = 6;
     self.link = nil;
 }
 
+-  (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    UITouch *touch = [touches anyObject];
+    CGPoint location = [touch locationInView:self];
+    NSDate *localDate = [NSDate date]; //获取当前时间
+    self.lastTime = [localDate timeIntervalSince1970];
+    if (self.lockMode) {
+        //清除上一条锁定记录
+        self.lockedFish = nil;
+        [self p_endAutoShooting];
+        for (FishView *subView in self.subviews) {
+            if ([subView isKindOfClass:[FishView class]]) {
+                if ([subView.layer.presentationLayer hitTest:location]) {
+                    //更新目标
+                    self.lockedFish = subView;
+                    break;
+                }
+            }
+        }
+        
+        if (!self.lockedFish) {
+            //锁定模式下点击空白区域,  退出锁定模式
+            [self p_exitLockMode];
+            return;
+        }else{
+            self.lockedFish.targetable = YES;
+            [self.lockedFish showLock];
+            //设置除锁定目标外的🐟为不可命中
+            for (FishView *subView in self.subviews) {
+                if ([subView isKindOfClass:[FishView class]]) {
+                    if (subView != self.lockedFish) {
+                        subView.targetable = NO;
+                        [subView hideLock];
+                    }
+                }
+            }
+            self.autoShootTimer.paused = NO;
+        }
+        
+    }else{
+        [self p_shootingAtPoint:location];
+    }
+
+
+}
+
+- (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    if (self.lockMode) {
+        return;
+    }
+    UITouch *touch = [touches anyObject];
+    CGPoint location = [touch locationInView:self];
+    
+    NSDate *localDate = [NSDate date]; //获取当前时间
+    if (self.lastTime == 0) {
+        self.lastTime = [localDate timeIntervalSince1970];
+        return;
+    }else{
+        NSTimeInterval currentTime = [localDate timeIntervalSince1970];
+        
+        NSTimeInterval interval = currentTime - self.lastTime;
+        
+        if (interval >= 0.2) {
+            self.lastTime = currentTime;
+            [self p_shootingAtPoint:location];
+        }
+    }
+}
+
+
 #pragma mark EventHandler
 - (IBAction)tapToShot:(UITapGestureRecognizer *)sender {
     //rotation
     CGPoint location = [sender locationInView:self];
+    [self p_shootingAtPoint:location];
+ }
+
+
+- (IBAction)lockFish:(UIButton *)btn {
+    btn.selected = !btn.selected;
+    if (btn.selected) {  //
+        self.lockMode = YES;
+    }else{
+        //退出锁定模式
+        [self p_exitLockMode];
+    }
+}
+
+
+
+
+- (IBAction)voidTap:(UITapGestureRecognizer *)sender {
+}
+
+
+- (IBAction)powerPlus:(UIButton *)sender {
+    NSString *imgName = [NSString stringWithFormat:@"shooting-barrel-lvl%d~iphone",(++self.power)%4];
+    self.batteryView.image = [UIImage imageNamed:imgName];
+}
+
+- (IBAction)powerMinus:(UIButton *)sender {
+    self.power--;
+    if (self.power < 0) {
+        self.power = 3;
+    }
+    NSString *imgName = [NSString stringWithFormat:@"shooting-barrel-lvl%d~iphone",(self.power)%4];
+    self.batteryView.image = [UIImage imageNamed:imgName];
+}
+
+
+
+#pragma mark UICollisionBehaviorDelegate
+- (void)collisionBehavior:(UICollisionBehavior*)behavior beganContactForItem:(UIView *)item withBoundaryIdentifier:(nullable id <NSCopying>)identifier atPoint:(CGPoint)p
+{
+    [self.animator removeBehavior:behavior];
+    [item removeFromSuperview];
+    
+    [self p_showGollisionAnimationImgvAtPoint:p];
+    
+    [self.animator removeBehavior:behavior];
+    
+}
+
+#pragma mark Private
+
+- (void)p_shootingAtPoint:(CGPoint)location
+{
     CGPoint origin = CGPointMake(self.frame.size.width * 0.5, self.frame.size.height);
     CGFloat angle = atan(((origin.x - location.x)/(origin.y - location.y)));
     CGAffineTransform transform = CGAffineTransformMakeRotation(-angle);
@@ -89,43 +226,12 @@ static int fishTypeCount = 6;
     //shotting
     UIPushBehavior *pushBehavior = [[UIPushBehavior alloc]initWithItems:@[bullet] mode:UIPushBehaviorModeInstantaneous];
     pushBehavior.angle = M_PI_2-                                                                                                                      angle;
-    pushBehavior.magnitude = -0.1;
+    pushBehavior.magnitude = -0.15;
     [self.animator addBehavior:pushBehavior];
-}
 
-- (IBAction)voidTap:(UITapGestureRecognizer *)sender {
-}
-
-
-- (IBAction)powerPlus:(UIButton *)sender {
-    NSString *imgName = [NSString stringWithFormat:@"shooting-barrel-lvl%d~iphone",(++self.power)%4];
-    self.batteryView.image = [UIImage imageNamed:imgName];
-}
-
-- (IBAction)powerMinus:(UIButton *)sender {
-    self.power--;
-    if (self.power < 0) {
-        self.power = 3;
-    }
-    NSString *imgName = [NSString stringWithFormat:@"shooting-barrel-lvl%d~iphone",(self.power)%4];
-    self.batteryView.image = [UIImage imageNamed:imgName];
 }
 
 
-
-#pragma mark UICollisionBehaviorDelegate
-- (void)collisionBehavior:(UICollisionBehavior*)behavior beganContactForItem:(UIView *)item withBoundaryIdentifier:(nullable id <NSCopying>)identifier atPoint:(CGPoint)p
-{
-    [self.animator removeBehavior:behavior];
-    [item removeFromSuperview];
-    
-    [self p_showGollisionAnimationImgvAtPoint:p];
-    
-    [self.animator removeBehavior:behavior];
-    
-}
-
-#pragma mark Private
 - (void)p_createFish
 {
     //随机一种鱼
@@ -142,20 +248,43 @@ static int fishTypeCount = 6;
     //duration
     fish.duration = fishType + 10;
     
+    
+    //是否已经有鱼被锁定
+    fish.targetable = !self.lockedFish;
+    
     __weak typeof(self) weakSelf = self;
     [self insertSubview:fish atIndex:1];
     [fish beginSwimming];
     
+    fish.fishDismiss = ^(BOOL isLocked){
+        if (isLocked) {
+            [weakSelf p_exitLockMode];
+        }
+    };
+
     fish.fishHitSuccess = ^(BulletView *bullet){
         [weakSelf p_showGollisionAnimationImgvAtPoint:bullet.center];
         [bullet removeFromSuperview];
         [weakSelf.animator removeBehavior:bullet.collision];
 
     };
-    fish.fishDead = ^(BulletView *bullet) {
-        
-    };
-    
+}
+
+
+
+- (void)p_exitLockMode
+{
+    self.lockedFish = nil;
+    self.lockMode = NO;
+    self.lockBtn.selected = NO;
+    [self p_endAutoShooting];
+    //重新设置所有鱼为可命中
+    for (FishView *subView in self.subviews) {
+        if ([subView isKindOfClass:[FishView class]]) {
+            subView.targetable = YES;
+            [subView hideLock];
+        }
+    }
 }
 
 
@@ -192,8 +321,28 @@ static int fishTypeCount = 6;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [imgv removeFromSuperview];
     });
-    
 }
+
+- (void)p_beginAutoShooting
+{
+    NSLog(@"自动射击中");
+    CGPoint point = self.lockedFish.layer.presentationLayer.frame.origin;
+    if (self.lockedFish.direction == XBFishSwimmingDirectionLeft) {
+        point = CGPointMake(point.x + self.lockedFish.frame.size.width, point.y);
+    }else
+    {
+        point = CGPointMake(point.x + self.lockedFish.frame.size.width * 0.1, point.y);
+    }
+    [self p_shootingAtPoint:point];
+}
+
+- (void)p_endAutoShooting
+{
+    if (!self.autoShootTimer.isPaused) {
+        self.autoShootTimer.paused = YES;
+    }
+}
+
 #pragma mark Accessor
 - (UIDynamicAnimator *)animator
 {
@@ -202,4 +351,16 @@ static int fishTypeCount = 6;
     }
     return _animator;
 }
+
+- (CADisplayLink *)autoShootTimer
+{
+    if (!_autoShootTimer) {
+        _autoShootTimer = [CADisplayLink displayLinkWithTarget:self selector:@selector(p_beginAutoShooting)];
+        _autoShootTimer.frameInterval = 12; //12
+        [_autoShootTimer addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
+        _autoShootTimer.paused = YES;
+    }
+    return _autoShootTimer;
+}
+
 @end

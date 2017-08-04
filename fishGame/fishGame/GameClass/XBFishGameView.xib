@@ -59,6 +59,20 @@
                         <constraint firstAttribute="height" constant="72" id="f8c-62-v0e"/>
                     </constraints>
                 </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hrj-Dc-a6b">
+                    <rect key="frame" x="328" y="331" width="37" height="34"/>
+                    <color key="backgroundColor" red="1" green="0.92156862750000001" blue="0.023529411760000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <state key="normal" title="锁定">
+                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                    <state key="selected" title="取消锁定">
+                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                    <connections>
+                        <action selector="lockFish:" destination="dN0-KD-cMF" eventType="touchUpInside" id="vjE-JQ-roV"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <gestureRecognizers/>
@@ -66,10 +80,12 @@
                 <constraint firstItem="zpu-8R-Wu0" firstAttribute="top" secondItem="dN0-KD-cMF" secondAttribute="top" id="0sy-uJ-TKd"/>
                 <constraint firstAttribute="bottom" secondItem="JMd-cf-iEH" secondAttribute="bottom" constant="-36" id="Cnr-gM-sNZ"/>
                 <constraint firstItem="Qkg-g7-q63" firstAttribute="centerX" secondItem="dN0-KD-cMF" secondAttribute="centerX" id="DUl-GQ-LQQ"/>
+                <constraint firstAttribute="bottom" secondItem="Hrj-Dc-a6b" secondAttribute="bottom" constant="10" id="Drz-wy-fAK"/>
                 <constraint firstItem="JMd-cf-iEH" firstAttribute="centerX" secondItem="dN0-KD-cMF" secondAttribute="centerX" id="EdP-Jc-HCk"/>
                 <constraint firstAttribute="bottom" secondItem="4gt-U3-D4b" secondAttribute="bottom" constant="-26" id="INF-My-45C"/>
                 <constraint firstItem="zpu-8R-Wu0" firstAttribute="leading" secondItem="dN0-KD-cMF" secondAttribute="leading" id="N75-Qx-1P5"/>
                 <constraint firstAttribute="trailing" secondItem="zpu-8R-Wu0" secondAttribute="trailing" id="QXz-ws-chW"/>
+                <constraint firstAttribute="trailing" secondItem="Hrj-Dc-a6b" secondAttribute="trailing" constant="10" id="Xj7-y9-GjN"/>
                 <constraint firstItem="4gt-U3-D4b" firstAttribute="centerX" secondItem="dN0-KD-cMF" secondAttribute="centerX" id="rRo-ba-ZXC"/>
                 <constraint firstAttribute="bottom" secondItem="zpu-8R-Wu0" secondAttribute="bottom" id="rsh-EF-Ktv"/>
                 <constraint firstAttribute="bottom" secondItem="Qkg-g7-q63" secondAttribute="bottom" id="wBh-L8-MCn"/>
@@ -77,15 +93,10 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="batteryView" destination="JMd-cf-iEH" id="ecS-CH-6lY"/>
-                <outletCollection property="gestureRecognizers" destination="Ib0-Iz-OmL" appends="YES" id="zvD-pX-VgS"/>
+                <outlet property="lockBtn" destination="Hrj-Dc-a6b" id="PKg-bY-8ph"/>
             </connections>
             <point key="canvasLocation" x="25.5" y="51.5"/>
         </view>
-        <tapGestureRecognizer id="Ib0-Iz-OmL" userLabel="shot">
-            <connections>
-                <action selector="tapToShot:" destination="dN0-KD-cMF" id="8AC-o8-02d"/>
-            </connections>
-        </tapGestureRecognizer>
         <tapGestureRecognizer id="FNg-3f-2M2">
             <connections>
                 <action selector="voidTap:" destination="dN0-KD-cMF" id="P2U-6x-N6k"/>
